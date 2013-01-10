@@ -339,10 +339,11 @@ class ResolveUIDAndCaptionFilter(SGMLParser):
                 if fullimage is not None:
                     # Check to see if the alt / title tags need setting
                     title = aq_acquire(fullimage, 'Title')()
+                    description = aq_acquire(fullimage, 'Description')()
                     if 'alt' not in attributes:
                         attributes['alt'] = title
-                    if 'title' not in attributes:
-                        attributes['title'] = title
+                    if 'title' not in attributes and description:
+                        attributes['title'] = description
                     attrs = attributes.iteritems()
 
         # Add the tag to the result
